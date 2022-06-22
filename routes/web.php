@@ -11,11 +11,11 @@
 |
 */
 
-// $path_string = str_replace(env('APP_URL'), '', URL::current());
+$path_string = str_replace(env('APP_URL'), '', URL::current());
 
-// if(explode('/', $path_string)[0] != 'api'){
-//     Route::get($path_string, 'FontendController@controlPage');    
-// }
+if(explode('/', $path_string)[0] != 'api'){
+    Route::get($path_string, 'FontendController@controlPage');    
+}
 
 
 
