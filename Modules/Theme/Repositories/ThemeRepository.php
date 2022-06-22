@@ -120,8 +120,8 @@ class ThemeRepository
 			if (!file_exists(public_path('resources/themes/'.$input['folder']))) {
 				mkdir(public_path('resources/themes/'.$input['folder']), 0777, true);
 			}
-			$url = 'themes/'.$input['folder'].'/page.html';
-			File::put(resource_path($url), $input['content_html']);
+			$url = 'resources/themes/'.$input['folder'].'/page.html';
+			File::put(public_path($url), $input['content_html']);
 			$input['content_html'] = $url;
 			$Theme->fill($input);
 			if ($Theme->save()) {
@@ -141,7 +141,7 @@ class ThemeRepository
 
 		if ($theme) {
 			$result = $theme;
-			$result['content_html'] = file_get_contents(resource_path($result['content_html']));
+			$result['content_html'] = file_get_contents(public_path($result['content_html']));
 			return $result;
 		}
 
@@ -161,8 +161,8 @@ class ThemeRepository
 			// if($input['folder'] != $oldData['folder']){
 			// 	rename (public_path('resources/themes/'.$oldData['folder']), public_path('resources/themes/'.$input['folder']));
 			// }
-			$url = 'themes/'.$input['folder'].'/page.html';
-			File::put(resource_path($url), $input['content_html']);
+			$url = 'resources/themes/'.$input['folder'].'/page.html';
+			File::put(public_path($url), $input['content_html']);
 			$input['content_html'] = $url;
 
 			$theme = Theme::findOrFail($id);
@@ -204,7 +204,7 @@ class ThemeRepository
 		$zipper = new \Chumper\Zipper\Zipper;
 //		$logFiles = Zipper::make($input['folder'])->listFiles();
 
-		$zipper->make('C:\Users\thuan\OneDrive\Desktop\www.corridorcapital.com.zip')->extractTo(resource_path('themes'));
+		$zipper->make('C:\Users\thuan\OneDrive\Desktop\www.corridorcapital.com.zip')->extractTo(public_path('resources/themes'));
 		return true;
 	}
 
