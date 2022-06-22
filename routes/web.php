@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+print(env('APP_URL'));
+print(URL::current());
 $path_string = str_replace(env('APP_URL'), '', URL::current());
 
 if(explode('/', $path_string)[0] != 'api'){
