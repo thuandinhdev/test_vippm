@@ -141,7 +141,7 @@ class ThemeRepository
 
 		if ($theme) {
 			$result = $theme;
-			$result['content_html'] = file_get_contents(public_path($result['content_html']));
+			$result['content_html'] = file_get_contents(public_path('resources/'.$result['content_html']));
 			return $result;
 		}
 
