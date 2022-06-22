@@ -11,8 +11,7 @@
 |
 */
 
-$path_string = str_replace(
-    str_replace(env('APP_URL'), '', ['https://', 'http://']), '', str_replace(URL::current(), '', ['https://', 'http://']));
+$path_string = str_replace(str_replace(['https://', 'http://'], '', env('APP_URL')), '', str_replace(['https://', 'http://'], '', URL::current()));
 
 if(explode('/', $path_string)[0] != 'api'){
     Route::get($path_string, 'FontendController@controlPage');    
