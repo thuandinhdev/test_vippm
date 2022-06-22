@@ -12,6 +12,3 @@ storage/installed
 # IDEs and editors
 /.idea
 vendor
-public/uploads/profile
-public/uploads/project
-public/uploads/translation
