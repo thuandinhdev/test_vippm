@@ -235,7 +235,7 @@ class WidgetRepository
 			$result = $widget;
 			$themeActive = $this->webHelper->getThemeActive();
 			if(file_exists(public_path('themes/'.$themeActive['folder'].$result['content_html']))){
-				$result['content_html'] = file_get_contents(resource_path('themes/' . $themeActive['folder'] . $result['content_html']));
+				$result['content_html'] = file_get_contents(public_path('themes/' . $themeActive['folder'] . $result['content_html']));
 			} else {
 				$result['content_html'] = '';
 			}
