@@ -117,8 +117,8 @@ class ThemeRepository
 			$input['folder'] = strtolower(
 				preg_replace('/\s+/', '_', $input['folder'])
 			);
-			if (!file_exists(public_path('themes/'.$input['folder']))) {
-				mkdir(public_path('themes/'.$input['folder']), 0777, true);
+			if (!file_exists(public_path('resources/themes/'.$input['folder']))) {
+				mkdir(public_path('resources/themes/'.$input['folder']), 0777, true);
 			}
 			$url = 'themes/'.$input['folder'].'/page.html';
 			File::put(resource_path($url), $input['content_html']);
@@ -159,7 +159,7 @@ class ThemeRepository
 
 			// $oldData = Theme::where('id', $id)->first();
 			// if($input['folder'] != $oldData['folder']){
-			// 	rename (public_path('themes/'.$oldData['folder']), public_path('themes/'.$input['folder']));
+			// 	rename (public_path('resources/themes/'.$oldData['folder']), public_path('resources/themes/'.$input['folder']));
 			// }
 			$url = 'themes/'.$input['folder'].'/page.html';
 			File::put(resource_path($url), $input['content_html']);

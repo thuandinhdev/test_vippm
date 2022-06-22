@@ -188,13 +188,13 @@ class WidgetRepository
 		$input['machine_name'] = $this->webHelper->stripVN($input['name']);
 
 		$themeActive = $this->webHelper->getThemeActive();
-		if (!file_exists(public_path('themes/'.$themeActive['folder'].'/widgets'))) {
-			mkdir(public_path('themes/'.$themeActive['folder'].'/widgets'), 0777, true);
+		if (!file_exists(public_path('resources/themes/'.$themeActive['folder'].'/widgets'))) {
+			mkdir(public_path('resources/themes/'.$themeActive['folder'].'/widgets'), 0777, true);
 		}
 		DB::beginTransaction();
 			try {
 			$url = '/widgets/'.$input['machine_name'].'.html';
-			File::put(public_path('themes/'.$themeActive['folder'].$url), $input['content_html']);
+			File::put(public_path('resources/themes/'.$themeActive['folder'].$url), $input['content_html']);
 			$input['content_html'] = $url;
 			$widget->fill($input);
 			if ($widget->save()) {
@@ -234,8 +234,8 @@ class WidgetRepository
 			$widget->custom_field_multiple = json_decode($widget->custom_field_multiple);
 			$result = $widget;
 			$themeActive = $this->webHelper->getThemeActive();
-			if(file_exists(public_path('themes/'.$themeActive['folder'].$result['content_html']))){
-				$result['content_html'] = file_get_contents(public_path('themes/' . $themeActive['folder'] . $result['content_html']));
+			if(file_exists(public_path('resources/themes/'.$themeActive['folder'].$result['content_html']))){
+				$result['content_html'] = file_get_contents(public_path('resources/themes/' . $themeActive['folder'] . $result['content_html']));
 			} else {
 				$result['content_html'] = '';
 			}
@@ -256,13 +256,13 @@ class WidgetRepository
 		$input = $request->all();
 		$input['machine_name'] = $this->webHelper->stripVN($input['name']);
 		$themeActive = $this->webHelper->getThemeActive();
-		if (!file_exists(public_path('themes/'.$themeActive['folder'].'/widgets'))) {
-			mkdir(public_path('themes/'.$themeActive['folder'].'/widgets'), 0777, true);
+		if (!file_exists(public_path('resources/themes/'.$themeActive['folder'].'/widgets'))) {
+			mkdir(public_path('resources/themes/'.$themeActive['folder'].'/widgets'), 0777, true);
 		}
 		$url = '/widgets/'.$input['machine_name'].'.html';
 		DB::beginTransaction();
 			try {
-			File::put(public_path('themes/'.$themeActive['folder'].$url), $input['content_html']);
+			File::put(public_path('resources/themes/'.$themeActive['folder'].$url), $input['content_html']);
 			$input['content_html'] = $url;
 			if(isset($input['custom_field_multiple'])){
 				foreach ($input['custom_field_multiple'] as $key => $value){
