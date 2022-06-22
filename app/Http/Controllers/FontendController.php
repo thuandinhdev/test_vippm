@@ -35,7 +35,7 @@ class FontendController extends BaseController{
 	public function controlPage(){
 	// 	$APP_URL = 'http://localhost/web-food-demo/public/';
 		$APP_URL = config('app.url');
-		$path_string = str_replace($APP_URL, '', URL::current());
+		$path_string = str_replace(str_replace(['https://', 'http://'], '', $APP_URL), '', str_replace(['https://', 'http://'], '', URL::current()));
 
 
 
