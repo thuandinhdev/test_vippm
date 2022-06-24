@@ -12,12 +12,12 @@
 */
 
 $path_string = str_replace(str_replace(['https://', 'http://'], '', env('APP_URL')), '', str_replace(['https://', 'http://'], '', URL::current()));
-
-if(explode('/', $path_string)[0] != 'api'){
+if(explode('/', $path_string)[0] == ''){
+    return redirect(config('app.front_url').'/home');
+}
+if(explode('/', $path_string)[0] != 'api' && explode('/', $path_string)[0] != 'admin'){
     Route::get($path_string, 'FontendController@controlPage');    
 }
-
-
 
 Route::get('/', function () {
     if (!is_null(config('app.front_url'))) {
@@ -41,6 +41,5 @@ Route::get('/config-cache', function() {
 // Configuration cached.
 Route::get('/queue-work', function() {
     $r = Artisan::call('queue:work');
-    pr($r);
     return "Done!";
 });
