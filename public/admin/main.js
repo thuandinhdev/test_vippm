@@ -10655,8 +10655,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment;
 environment = {
     production: false,
-    // apiUrl: 'http://sinhdang.glinkdeployments.com/glaval-api-thuandinh/public'
-    apiUrl: 'http://cfdfood.herokuapp.com'
+    apiUrl: 'https://cuchuoicon.com'
 };
 
 
