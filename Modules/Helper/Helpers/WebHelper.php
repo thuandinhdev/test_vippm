@@ -56,7 +56,7 @@ class WebHelper
 		$regionHtml = '';
 		$themeActive = $this->getThemeActive();
 		foreach ($data as $value){
-			$html = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$value->content_html));
+			$html = file_get_contents(resource_path('themes/'.$themeActive['folder'].$value->content_html));
 			for ($x = 0; $x < $value->number_content; $x++) {
 				if($value->number_content > 1){
 					$html = str_replace('[content'.$x.']', '<div style="background: yellow;">'.$value->name.$x.'</div>', $html);
@@ -66,7 +66,7 @@ class WebHelper
 			}
 			$regionHtml .= $html;
 		}
-		$pageDisplay = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].'/page.html'));
+		$pageDisplay = file_get_contents(resource_path('themes/'.$themeActive['folder'].'/page.html'));
 		$resource = str_replace('[content]', $regionHtml, $pageDisplay);
 		File::put(resource_path('views/template-'.$templateData->machine_name.'.blade.php'), $resource);
 		return;
@@ -103,8 +103,8 @@ class WebHelper
 		$regionsData = '';
 		$themeActive = $this->getThemeActive();
 		foreach ($template as $value){
-			if(file_exists(public_path('resources/themes/'.$themeActive['folder'].$value->content_html))){
-				$regionHtml = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$value->content_html));
+			if(file_exists(resource_path('themes/'.$themeActive['folder'].$value->content_html))){
+				$regionHtml = file_get_contents(resource_path('themes/'.$themeActive['folder'].$value->content_html));
 				for ($x = 0; $x < $value->number_content; $x++) {
 					$widgetData = DB::table('web_include_widget')->join('web_widgets', 'web_widgets.id', '=', 'web_include_widget.widgets_id')->join('web_widgets_translation', 'web_widgets.id', '=', 'web_widgets_translation.widgets_id')->leftJoin('web_widgets_data', 'web_widgets.id', '=', 'web_widgets_data.widgets_id')
 									->where('web_widgets_translation.langcode', 'vi')
@@ -118,7 +118,7 @@ class WebHelper
 					$widgetHtml = '';
 
 					foreach ($widgetData as $item){
-						if(file_exists((public_path('resources/themes/'.$themeActive['folder'].$item->content_html)))){
+						if(file_exists((resource_path('themes/'.$themeActive['folder'].$item->content_html)))){
 							$multipleData = [];
 							$custom_field_multiple = json_decode($item->custom_field_multiple, true);
 							$custom_fieldData = [];
@@ -175,7 +175,7 @@ class WebHelper
 								}
 							}
 							if($check_data_valid){
-								$widgetHtml .= file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$item->content_html));
+								$widgetHtml .= file_get_contents(resource_path('themes/'.$themeActive['folder'].$item->content_html));
 							} else {
 								$widgetHtml .= "<h2>Không tìm thấy dữ liệu</>";
 							}
@@ -187,7 +187,7 @@ class WebHelper
 			$regionsData .= $regionHtml;
 		}
 
-		$pageDisplay = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].'/page.html'));
+		$pageDisplay = file_get_contents(resource_path('themes/'.$themeActive['folder'].'/page.html'));
 		$resource = str_replace('[content]', $regionsData, $pageDisplay);
 		File::put(resource_path('views/'.$pageData->machine_name.'.blade.php'), $resource);
 		return 'write page success';
@@ -627,8 +627,8 @@ class WebHelper
 		$regionsData = '';
 		$themeActive = $this->getThemeActive();
 		foreach ($template as $value){
-			if(file_exists(public_path('resources/themes/'.$themeActive['folder'].$value->content_html))){
-				$regionHtml = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$value->content_html));
+			if(file_exists(resource_path('themes/'.$themeActive['folder'].$value->content_html))){
+				$regionHtml = file_get_contents(resource_path('themes/'.$themeActive['folder'].$value->content_html));
 				for ($x = 0; $x < $value->number_content; $x++) {
 					$widgetData = DB::table('web_include_widget')->join('web_widgets', 'web_widgets.id', '=', 'web_include_widget.widgets_id')->join('web_widgets_translation', 'web_widgets.id', '=', 'web_widgets_translation.widgets_id')->leftJoin('web_widgets_data', 'web_widgets.id', '=', 'web_widgets_data.widgets_id')
 									->where('web_widgets_translation.langcode', 'vi')
@@ -642,7 +642,7 @@ class WebHelper
 					$widgetHtml = '';
 					// dd($widgetData);
 					foreach ($widgetData as $item){
-						if(file_exists((public_path('resources/themes/'.$themeActive['folder'].$item->content_html)))){
+						if(file_exists((resource_path('themes/'.$themeActive['folder'].$item->content_html)))){
 							
 							$multipleData = [];
 							$custom_field_multiple = json_decode($item->custom_field_multiple, true);
@@ -701,7 +701,7 @@ class WebHelper
 								}
 							}
 							if($check_data_valid){
-								$widgetHtml .= "<div onclick='callbackEditWidget(".$item->id.")'>".file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$item->content_html))."</div>";
+								$widgetHtml .= "<div onclick='callbackEditWidget(".$item->id.")'>".file_get_contents(resource_path('themes/'.$themeActive['folder'].$item->content_html))."</div>";
 							} else {
 								$widgetHtml .= "<div onclick='callbackEditWidget(".$item->id.")'><h2>Không tìm thấy dữ liệu</></div>";
 							}
@@ -722,7 +722,7 @@ class WebHelper
 			$regionsData .= $regionHtml;
 		}
 		$regionsData .= '<script type="text/javascript"> function callbackEditWidget(id) { window.parent.postMessage(id, "*"); } </script>';
-		$pageDisplay = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].'/page.html'));
+		$pageDisplay = file_get_contents(resource_path('themes/'.$themeActive['folder'].'/page.html'));
 		
 		$APP_URL = config('app.url');
 		$resource = str_replace('[content]', $regionsData, $pageDisplay);

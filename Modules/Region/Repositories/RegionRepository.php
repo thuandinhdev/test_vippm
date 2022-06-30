@@ -112,11 +112,11 @@ class RegionRepository
 		$input = $request->all();
 		$input['machine_name'] = $this->webHelper->stripVN($input['name']);
 		$themeActive = $this->webHelper->getThemeActive();
-		if (!file_exists(public_path('resources/themes/'.$themeActive['folder'].'/regions'))) {
-			mkdir(public_path('resources/themes/'.$themeActive['folder'].'/regions'), 0777, true);
+		if (!file_exists(resource_path('themes/'.$themeActive['folder'].'/regions'))) {
+			mkdir(resource_path('themes/'.$themeActive['folder'].'/regions'), 0777, true);
 		}
 		$url = '/regions/'.$input['machine_name'].'.html';
-		File::put(public_path('resources/themes/'.$themeActive['folder'].$url), $input['content_html']);
+		File::put(resource_path('themes/'.$themeActive['folder'].$url), $input['content_html']);
 		$input['content_html'] = $url;
 		DB::beginTransaction();
 		try {
@@ -145,8 +145,8 @@ class RegionRepository
 		$themeActive = $this->webHelper->getThemeActive();
 		if ($region) {
 			$result = $region;
-			if(file_exists(public_path('resources/themes/'.$themeActive['folder'].$result['content_html']))){
-				$result['content_html'] = file_get_contents(public_path('resources/themes/'.$themeActive['folder'].$result['content_html']));
+			if(file_exists(resource_path('themes/'.$themeActive['folder'].$result['content_html']))){
+				$result['content_html'] = file_get_contents(resource_path('themes/'.$themeActive['folder'].$result['content_html']));
 			} else {
 				$result['content_html'] = '';
 			}
@@ -162,15 +162,15 @@ class RegionRepository
 		$input = $request->all();
 		$input['machine_name'] = $this->webHelper->stripVN($input['name']);
 		$themeActive = $this->webHelper->getThemeActive();
-		if (!file_exists(public_path('resources/themes/'.$themeActive['folder'].'/regions'))) {
-			mkdir(public_path('resources/themes/'.$themeActive['folder'].'/regions'), 0777, true);
+		if (!file_exists(resource_path('themes/'.$themeActive['folder'].'/regions'))) {
+			mkdir(resource_path('themes/'.$themeActive['folder'].'/regions'), 0777, true);
 		}
 		$oldData = Region::where('id', $id)->first();
 		if($input['machine_name'] != $oldData['machine_name']){
-			rename (public_path('resources/themes/'.$themeActive['folder'].'/regions/'.$oldData['machine_name'].'.html'), public_path('resources/themes/'.$themeActive['folder'].'/regions/'.$input['machine_name'].'.html'));
+			rename (resource_path('themes/'.$themeActive['folder'].'/regions/'.$oldData['machine_name'].'.html'), resource_path('themes/'.$themeActive['folder'].'/regions/'.$input['machine_name'].'.html'));
 		}
 		$url = '/regions/'.$input['machine_name'].'.html';
-		File::put(public_path('resources/themes/'.$themeActive['folder'].$url), $input['content_html']);
+		File::put(resource_path('themes/'.$themeActive['folder'].$url), $input['content_html']);
 		$input['content_html'] = $url;
 		DB::beginTransaction();
 		try {
@@ -210,7 +210,7 @@ class RegionRepository
 	        Region::where('id', $id)->delete();
 	        IncludeWidget::where('regions_id', $id)->delete();
 	        // $themeActive = $this->webHelper->getThemeActive();
-	        // unlink(public_path('resources/themes/'.$themeActive['folder'].$region['content_html']));
+	        // unlink(resource_path('themes/'.$themeActive['folder'].$region['content_html']));
 	        DB::commit();
             return true;
         } catch (\Exception $e) {

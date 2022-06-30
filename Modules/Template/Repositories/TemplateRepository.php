@@ -121,8 +121,8 @@ class TemplateRepository
 				// 	preg_replace('/\s+/', '_', $input['folder'])
 				// );
 				$themeActive = $this->webHelper->getThemeActive();
-				// if (!file_exists(public_path('resources/themes/'.$themeActive['folder'].'/'.$input['folder']))) {
-				// 	mkdir(public_path('resources/themes/'.$themeActive['folder'].'/'.$input['folder']), 0777, true);
+				// if (!file_exists(resource_path('themes/'.$themeActive['folder'].'/'.$input['folder']))) {
+				// 	mkdir(resource_path('themes/'.$themeActive['folder'].'/'.$input['folder']), 0777, true);
 				// }
 				// $url = 'themes/'.$themeActive['folder'].'/'.$input['folder'].'/page.html';
 				// File::put(resource_path($url), $input['content_html']);
@@ -170,10 +170,10 @@ class TemplateRepository
 			// $oldData = Template::where('id', $id)->first();
 			// $themeActive = $this->webHelper->getThemeActive();
 			// if($input['folder'] != $oldData['folder']){
-			// 	if (file_exists(public_path('resources/themes/'.$themeActive['folder'].'/'.$oldData['folder']))){
-			// 		rename (public_path('resources/themes/'.$themeActive['folder'].'/'.$oldData['folder']), public_path('resources/themes/'.$themeActive['folder'].'/'.$input['folder']));
+			// 	if (file_exists(resource_path('themes/'.$themeActive['folder'].'/'.$oldData['folder']))){
+			// 		rename (resource_path('themes/'.$themeActive['folder'].'/'.$oldData['folder']), resource_path('themes/'.$themeActive['folder'].'/'.$input['folder']));
 			// 	} else {
-			// 		mkdir(public_path('resources/themes/'.$themeActive['folder'].'/'.$input['folder']), 0777, true);
+			// 		mkdir(resource_path('themes/'.$themeActive['folder'].'/'.$input['folder']), 0777, true);
 			// 	}
 			// }
 			// $url = 'themes/'.$themeActive['folder'].'/'.$input['folder'].'/page.html';
