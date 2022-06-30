@@ -12,7 +12,7 @@
 */
 $path_string = str_replace([str_replace(['https://', 'http://'], '', env('APP_URL')), str_replace(['https://', 'http://'], '', env('FRONT_URL'))], '', str_replace(['https://', 'http://'], '', URL::current()));
 
-if(in_array(explode('/', $path_string)[0], ['index.html', 'index.php'])){
+if(in_array(explode('/', $path_string)[0], ['index', 'index.html', 'index.php'])){
     Route::get($path_string, function () {
         return redirect(env('FRONT_URL').'/home');
     });
