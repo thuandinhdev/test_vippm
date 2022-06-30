@@ -81,6 +81,7 @@
             "chmod -R 777 'bootstrap/cache/'",
             "chmod -R 666 'install.sql'",
             "chmod -R 777 'resources/themes/'",
+            "chmod -R 777 'resources/views/'",
             "chmod -R 666 '.env'"
         ],
         "post-root-package-install": [
