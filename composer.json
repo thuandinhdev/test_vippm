@@ -73,6 +73,7 @@
             "php artisan clear-compiled",
             "chmod -R 777 'public/'",
             "chmod -R 777 'public/uploads/'",
+            "chmod -R 777 'public/resources/'",
             "chmod -R 777 'storage/'",
             "chmod -R 777 'storage/framework/'",
             "chmod -R 777 'storage/framework/sessions/'",
